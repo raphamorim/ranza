@@ -9,7 +9,7 @@ Don't be shy, send a Pull Request :)
 Before anything, you need to have [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed.
 
 ```sh
-    $ npm install -g ranza
+$ npm install -g ranza
 ```
 
 ## Usage
@@ -17,13 +17,13 @@ Before anything, you need to have [node](http://nodejs.org/) and [npm](https://w
 Search unidentified dependencies in `package.json`
 
 ```sh
-    $ ranza [path]
+$ ranza [path]
 ```
 
 Search and Install unidentified dependencies in `package.json`:
 
 ```sh
-    $ ranza [path] install
+$ ranza [path] install
 ```
 
 ## Options

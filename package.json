@@ -1,0 +1,22 @@
+{
+  "name": "ranza",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "bin": "./bin/ranza.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/raphamorim/ranza.git"
+  },
+  "author": "Raphael Amorim <rapha850@gmail.com>",
+  "readmeFilename": "readme.md",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphamorim/ranza/issues"
+  },
+  "homepage": "https://github.com/raphamorim/ranza",
+  "preferGlobal": "true"
+}

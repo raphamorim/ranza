@@ -1,8 +1,10 @@
 var fs = require('fs');
 
-exports.readFile = function(filename) {
+function readFile (filename) {
     fs.readFile(__dirname + filename, 'utf8', function(err, data) {
         if (err) throw err;
-        console.log(data);
+        return data;
     });
 };
+
+module.exports = readFile;

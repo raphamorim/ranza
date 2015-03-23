@@ -1,5 +1,7 @@
 # Ranza
 
+> The npm butler
+
 Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you
 
 Don't be shy, send a Pull Request :)
@@ -14,7 +16,7 @@ $ npm install -g ranza
 
 ## Usage
 
-Search unidentified dependencies in `package.json`
+Status from all dependencies in `package.json`
 
 ```sh
 $ ranza [path]
@@ -24,6 +26,12 @@ Search and Install unidentified dependencies in `package.json`:
 
 ```sh
 $ ranza [path] install
+```
+
+Search and Install unidentified dependencies in `package.json` in devDependencies:
+
+```sh
+$ ranza [path] install dev
 ```
 
 ## Options

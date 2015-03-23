@@ -1,12 +1,15 @@
 
 Usage: ranza <command>
 
-Description: 
+Description:
 More info: https://github.com/raphamorim/ranza
 
 Commands:
- ranza <path>                update package.json dependecies
- ranza <path> install		 update package.json and install dependecies
+ ranza <path>                status about all dependencies from project
+ ranza <path> install        install all dependencies
+ ranza <path> watch          watch and report dependencies status
+ ranza <path> clean          clean all not used dependencies
+ ranza <path> serve          build app and update dependencies as added
 
 Options:
  -a, --all             output saved commands

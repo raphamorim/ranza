@@ -16,32 +16,27 @@ $ npm install -g ranza
 
 ## Usage
 
+#### Status (stable)
+
 Status from all dependencies in `package.json`
 
 ```sh
-$ ranza [path]
+$ ranza status
 ```
+
+#### Install (unstable)
 
 Search and Install unidentified dependencies in `package.json`:
 
 ```sh
-$ ranza [path] install
+$ ranza install
 ```
 
-Search and Install unidentified dependencies in `package.json` in devDependencies:
+Search and Install unidentified dependencies in `package.json` as devDependencies:
 
 ```sh
-$ ranza [path] install dev
+$ ranza install dev
 ```
-
-## Options
-
-    ranza [options]
-
-    Options:
-
-        -h, --help                output usage information
-        -v, --version             output the version number
 
 
 ## About

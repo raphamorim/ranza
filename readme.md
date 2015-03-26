@@ -18,7 +18,7 @@ $ npm install -g ranza
 
 #### Status (stable)
 
-Status from all dependencies in `package.json`
+Run in folder root to get the status from all dependencies in `package.json`
 
 ```sh
 $ ranza status

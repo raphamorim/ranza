@@ -7,14 +7,14 @@ exports.root = function (path) {
 		var dir = path.split('/'),
         	root = path.replace(dir[dir.length -1], '');
 
-        return root;
+        return process.cwd() + root;
     }
 
-    return '/';
+    return process.cwd();
 };
 
 exports.compare = function (root, requires) {
-	var pJson = require('.' + root + 'package.json');
+	var pJson = require(root + '/package.json');
 
 	var dependencies = new Array(),
 		normal = pJson.dependencies || {},

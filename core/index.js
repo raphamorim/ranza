@@ -1,3 +1,5 @@
+var colorizer = require('./colorizer');
+
 exports.sentinel  = require('./sentinel');
 exports.manager   = require('./manager');
 exports.reader    = require('./reader');
@@ -30,9 +32,9 @@ exports.compare = function (root, requires) {
 	dependencies.forEach(function(dependency) {
 		var index = requires.indexOf(dependency);
 		if (index < 0) {
-			console.log('[FAIL] <' + dependency + '> is defined but is not being used')
+			console.log(colorizer('error','[FAIL]') + ' <' + dependency + '> is defined but is not being used')
 		} else {
-			console.log('[OK] <' + dependency + '> is defined and used')
+			console.log(colorizer('success','[OK]') + ' <' + dependency + '> is defined and used')
 		}
 	});
 

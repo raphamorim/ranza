@@ -1,10 +1,10 @@
 'use strict';
 
 var fs   = require('fs'),
-    path = require('path');
+    path = require('path'),
+    config = require('../config');
     
-var apiNode = ['path', 'exec', 'child_process', 'fs', 'crypto',
-               'os', 'http', 'https', 'net'];
+var apiNode = config.apiNode;
 
 function Manager (paths, fn) {
     return search(paths);

@@ -1,42 +1,21 @@
-var colorizer = require('./colorizer');
+'use strict';
 
-exports.sentinel  = require('./sentinel');
-exports.manager   = require('./manager');
-exports.reader    = require('./reader');
+var Core = {
+	'sentinel': require('./sentinel'),
 
-exports.root = function (path) {
-	if (path.indexOf('/') > -1) {
-		var dir = path.split('/'),
-        	root = path.replace(dir[dir.length -1], '');
+	'manager': require('./manager'),
 
-        return process.cwd() + root;
-    }
+	'installer': require('./installer'),
 
-    return process.cwd();
+	'cleaner': require('./cleaner'),
+
+	'reader': require('./reader'),
+
+	'root': require('./rooter'),
+
+	'compare': require('./comparer'),
+
+	'colorizer': require('./colorizer')
 };
 
-exports.compare = function (root, requires) {
-	var pJson = require(root + '/package.json');
-
-	var dependencies = new Array(),
-		normal = pJson.dependencies || {},
-		dev = pJson.devDependencies || {};
-
-	normal = (Object.keys(normal));
-	dev = (Object.keys(dev));
-
-	dependencies = normal.concat(dev);
-
-	console.log('\n[RANZA STATUS]\n');
-
-	dependencies.forEach(function(dependency) {
-		var index = requires.indexOf(dependency);
-		if (index < 0) {
-			console.log(colorizer('error','[FAIL]') + ' <' + dependency + '> is defined but is not being used')
-		} else {
-			console.log(colorizer('success','[OK]') + ' <' + dependency + '> is defined and used')
-		}
-	});
-
-	console.log('');
-};
+module.exports = Core;

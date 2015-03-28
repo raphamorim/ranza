@@ -8,9 +8,9 @@ var colors = {
   'error': 91
 };
 
-function colorizer(color, message) {
+function Colorizer(color, message) {
   if (!useColors) return String(str);
   return '\u001b[' + colors[color] + 'm' + message + '\u001b[0m';
 }
 
-module.exports = colorizer;
+module.exports = Colorizer;

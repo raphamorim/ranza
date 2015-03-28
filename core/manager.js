@@ -6,7 +6,7 @@ var fs   = require('fs'),
 var apiNode = ['path', 'exec', 'fs', 'crypto',
                'os', 'http', 'https', 'net'];
 
-function manager (paths, fn) {
+function Manager (paths, fn) {
     return search(paths);
 };
 
@@ -38,4 +38,4 @@ function search(paths) {
     return requires;
 }
 
-module.exports = manager;
+module.exports = Manager;

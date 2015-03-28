@@ -1,7 +1,9 @@
+'use strict';
+
 var fs = require('fs');
 
-function readFile (filename) {
+function Reader (filename) {
     return fs.readFileSync(__dirname + filename, 'utf8');
 };
 
-module.exports = readFile;
+module.exports = Reader;

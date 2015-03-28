@@ -16,6 +16,10 @@ function Compare (root, requires) {
 
 	dependencies = normal.concat(dev);
 
+	dependencies = dependencies.filter(function(item, pos) {
+    	return dependencies.indexOf(item) == pos;
+	});
+
 	console.log('\n[RANZA STATUS]\n');
 
 	dependencies.forEach(function(dependency) {

@@ -11,6 +11,11 @@ function Compare (root, requires) {
 		normal = pJson.dependencies || {},
 		dev = pJson.devDependencies || {};
 
+	if (requires.length <= 0 && dependencies.length <= 0) {
+		console.log(colorizer('error', 'Ranza say: There is no dependencies or requires!'));
+		return false; 
+	}
+
 	normal = (Object.keys(normal));
 	dev = (Object.keys(dev));
 

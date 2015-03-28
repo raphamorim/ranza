@@ -24,6 +24,10 @@ Run in folder root to get the status from all dependencies in `package.json`
 $ ranza status
 ```
 
+Example: 
+
+![Ranza Status](docs/images/status.png)
+
 #### Install (unstable)
 
 Search and Install unidentified dependencies in `package.json`:

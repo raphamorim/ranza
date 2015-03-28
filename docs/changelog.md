@@ -5,3 +5,4 @@
 - Stable Version
 - Status command stable
 - Colorful log/status
+- Major rewrite

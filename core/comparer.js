@@ -1,6 +1,10 @@
 var colorizer = require('./colorizer');
 
-function Compare(root, requires) {
+function diff (arr, diff){
+    return arr.filter(function(i) {return diff.indexOf(i) < 0;});
+}
+
+function Compare (root, requires) {
 	var pJson = require(root + '/package.json');
 
 	var dependencies = new Array(),
@@ -22,6 +26,16 @@ function Compare(root, requires) {
 			console.log(colorizer('success','[OK]') + ' <' + dependency + '> is defined and used')
 		}
 	});
+
+	var differences = diff(requires, dependencies);
+	if (differences.length > 0) {
+		differences.forEach(function(diff) {
+			console.log(colorizer('error','[FAIL]') + ' <' + diff + '> is being used, without define')
+		})
+
+		console.log('\n', 'Tip: To install undefined requires run:', '\n')
+		console.log(' $ ranza install')
+	}
 
 	console.log('');
 }

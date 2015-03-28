@@ -2,7 +2,7 @@
 
 var	watch   = require('node-watch'),
     glob    = require('glob'),
-    rooter		= require('./rooter');
+    rooter	= require('./rooter');
 
 function Sentinel(path, config, fn) {
 	var root = rooter(path),

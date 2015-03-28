@@ -3,7 +3,7 @@
 var fs   = require('fs'),
     path = require('path');
     
-var apiNode = ['path', 'exec', 'fs', 'crypto',
+var apiNode = ['path', 'exec', 'child_process', 'fs', 'crypto',
                'os', 'http', 'https', 'net'];
 
 function Manager (paths, fn) {

@@ -30,16 +30,22 @@ Example:
 
 #### Install (unstable)
 
-Search and Install unidentified dependencies in `package.json`:
+Search and install all requires dependencies in `package.json` without save:
 
 ```sh
 $ ranza install
 ```
 
-Search and Install unidentified dependencies in `package.json` as devDependencies:
+Search and install all requires dependencies in `package.json` saving as dependencies:
 
 ```sh
-$ ranza install dev
+$ ranza install --save
+```
+
+Search and install all requires dependencies in `package.json` saving as devDependencies:
+
+```sh
+$ ranza install --save-dev
 ```
 
 ## History

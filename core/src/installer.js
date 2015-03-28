@@ -4,8 +4,8 @@ var shell = require('child_process'),
     colorizer = require('./colorizer');
 
 function install (path, req, dev) {
-  var save = ' --save';
-  if (dev) save = ' --save-dev';
+  var save = '';
+  if (dev) save = ' ' + dev;
 
   return 'cd ' + path + ' && npm install ' + req + save;
 }

@@ -16,7 +16,7 @@ $ npm install -g ranza
 
 ## Usage
 
-#### Status (stable)
+#### Status
 
 Run in folder root to get the status from all dependencies in `package.json`
 
@@ -28,24 +28,44 @@ Example:
 
 ![Ranza Status](docs/images/status.png)
 
-#### Install (unstable)
+#### Install
 
-Search and install all requires dependencies in `package.json` without save:
+Search and install all dependencies requires in all files without save:
 
 ```sh
 $ ranza install
 ```
 
-Search and install all requires dependencies in `package.json` saving as dependencies:
+Search and install all dependencies requires in all files and save as `dependencies` in `package.json`:
 
 ```sh
 $ ranza install --save
 ```
 
-Search and install all requires dependencies in `package.json` saving as devDependencies:
+Search and install all dependencies requires in all files and save as `devDependencies` in `package.json`:
 
 ```sh
 $ ranza install --save-dev
+```
+
+#### Watch (unstable)
+
+Livereload in all files, installing undefined dependencies without save:
+
+```sh
+$ ranza watch
+```
+
+Livereload in all files, installing undefined dependencies and saving as `dependencies` in `package.json`:
+
+```sh
+$ ranza watch --save
+```
+
+Livereload in all files, installing undefined dependencies and saving as `devDependencies` in `package.json`:
+
+```sh
+$ ranza watch --save-dev
 ```
 
 ## History

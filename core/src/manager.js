@@ -6,12 +6,13 @@ var fs   = require('fs'),
     
 var apiNode = config.apiNode;
 
-function Manager (paths, fn) {
+function Manager (paths) {
     return search(paths);
 };
 
-function search(paths) {
+function search (paths) {
     var requires = new Array();
+    var validPaths = new Array();
 
     paths.forEach(function(path){
         if (path.indexOf('node_modules/') === -1) {
@@ -27,15 +28,17 @@ function search(paths) {
                                 .replace("\'", '')
                                 .replace("\"", '');
 
-                    if ((dependency.indexOf('/') == -1) && (dependency.indexOf('.js') == -1))
-                        if (apiNode.indexOf(dependency) == -1)
+                    if ((dependency.indexOf('/') == -1) && (dependency.indexOf('.js') == -1)) {                        if (apiNode.indexOf(dependency) == -1) {
                             requires.push(dependency);
+                            validPaths.push(path);
+                        }
+                    }
                 });
             }
         }
     });
 
-    return requires;
+    return {'requires': requires, 'validPaths': validPaths};
 }
 
 module.exports = Manager;

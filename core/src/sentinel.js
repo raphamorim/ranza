@@ -1,29 +1,20 @@
 'use strict';
 
-var	watch   = require('node-watch'),
-    glob    = require('glob'),
-    rooter	= require('./rooter');
+var Promises = require('bluebird');
 
-function Sentinel(path, config, fn) {
-	var root = rooter(path),
-		globOptions = {};
+var watch = require('node-watch'),
+    glob = Promises.promisify(require('glob')),
+    rooter = require('./rooter');
 
-	if (config.watch) {
-		watch(root, function(filename) {
-        	glob(root + '**/*.js*', globOptions, function (er, files) {
-            	return fn(files, root);
-        	});
-    	});
-
-    } else if (!config.watch) {
-    	glob(root + '**/*.js*', globOptions, function (er, files) {
-            return fn(files, root);
+function Sentinel(path) {
+    return new Promises(function(resolve, reject) {
+        var root = rooter(path),
+            globOptions = {};
+        
+        glob(root + '**/*.js*', globOptions).then(function(files) {
+            return resolve([files, root]);
         });
-
-    } else {
-    	return false;
-
-    }
-} 
+    });
+}
 
 module.exports = Sentinel;

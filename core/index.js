@@ -1,5 +1,7 @@
 'use strict';
 
+var Promises = require('bluebird');
+
 var Core = {
 	'sentinel': require('./src/sentinel'),
 

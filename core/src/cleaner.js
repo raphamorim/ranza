@@ -8,7 +8,9 @@ function Cleaner(arr) {
   			newArr.push(item);
   	});
 
-  	return newArr;
+  	return newArr.filter(function(item, pos) {
+    	return newArr.indexOf(item) == pos;
+	});
   }
 }
 

@@ -4,9 +4,13 @@
 
 Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you.
 
+A ranza **status** commad example:
+
+![Ranza Status](docs/images/status.gif)
+
 A ranza **watch** command example:
 
-![Ranza watch](docs/images/watch.gif)
+![Ranza Watch](docs/images/watch.gif)
 
 ## Install
 
@@ -25,10 +29,6 @@ Run in folder root to get the status from all dependencies in `package.json`
 ```sh
 $ ranza status
 ```
-
-Example: 
-
-![Ranza Status](docs/images/status.png)
 
 #### Install
 

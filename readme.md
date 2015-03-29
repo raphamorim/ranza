@@ -2,11 +2,9 @@
 
 > The npm butler
 
-Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you
+Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you.
 
-`Don't be shy, send a Pull Request`
-
-A ranza watch command example:
+A ranza **watch** command example:
 
 ![Ranza watch](docs/images/watch.gif)
 
@@ -64,7 +62,7 @@ $ ranza clean
 
 **(not recommended)**
 
-Cause: Install all dependencies in each livereload
+> Cause: Install all dependencies in each livereload
 
 Livereload in all files, installing undefined dependencies without save:
 
@@ -74,7 +72,7 @@ $ ranza watch
  
 **(recommended)**
 
-Cause: Only install missed dependencies in each livereload
+> Cause: Only install missed dependencies in each livereload
 
 Livereload in all files, installing undefined dependencies and saving as `dependencies` in `package.json`:
 
@@ -93,6 +91,8 @@ $ ranza watch --save-dev
 See [Changelog](docs/changelog.md) for more details.
 
 ## Contributing
+
+Don't be shy, send a Pull Request
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

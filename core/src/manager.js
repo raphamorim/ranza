@@ -1,44 +1,57 @@
 'use strict';
 
-var fs   = require('fs'),
-    path = require('path'),
-    config = require('../config');
-    
-var apiNode = config.apiNode;
+var Promises = require('bluebird'),
+    shell = Promises.promisifyAll(require('child_process')),
+    colorizer = require('./colorizer');
 
-function Manager (paths) {
-    return search(paths);
-};
+function generateCommand(path, dev, command) {
+    var save = '';
+    if (dev) save = ' ' + dev;
 
-function search (paths) {
-    var requires = new Array();
-    var validPaths = new Array();
+    var sh = 'cd ' + path + ' && npm ' + command + save + ' ';
 
-    paths.forEach(function(path){
-        if (path.indexOf('node_modules/') === -1) {
-            var data = fs.readFileSync(path, 'utf8');
-            var dependecies = data.match(/require(\(.*?)\)/g);
+    return function(req) {
+        return sh + req;
+    }
+}
 
-            if (dependecies) {
-                dependecies.forEach(function(dependency){
-                dependency = dependency
-                                .replace("require(", '')
-                                .replace("')", '')
-                                .replace("\")", '')
-                                .replace("\'", '')
-                                .replace("\"", '');
+function generateLog(command, print) {
+    if (!print) return false;
 
-                    if ((dependency.indexOf('/') == -1) && (dependency.indexOf('.js') == -1)) {                        if (apiNode.indexOf(dependency) == -1) {
-                            requires.push(dependency);
-                            validPaths.push(path);
-                        }
-                    }
-                });
-            }
-        }
+    if (command === 'install') {
+        console.log('[RANZA INSTALL] \n');
+        console.log(colorizer('success', 'Ranza say: It\'s installing...\n'));
+    }
+
+    else if (command === 'remove') {
+        console.log('[RANZA CLEAN] \n');
+        console.log(colorizer('success', 'Ranza say: It\'s removing...\n'));
+    }
+}
+
+function Execute(path, requires, command, sh) {
+    return new Promises(function(resolve, reject) {
+        return Promises.map(requires, function(require) {
+            console.log(colorizer('message', command + ': ' + require))
+            return shell.execAsync(sh(require)).spread(function(stdout) {
+                console.log(stdout);
+            }).catch(function(err) {
+                return console.log(colorizer('error', 'Ocurred a error: ' + err));
+            })
+        }, {concurrency: 1}).then(function(){
+            resolve()
+        });
     });
+}
 
-    return {'requires': requires, 'validPaths': validPaths};
+function Manager(command, path, requires, dev, print) {
+    if (typeof print === 'undefined') print = false;
+
+    generateLog(command, print);
+
+    if (command === 'remove') dev = '--save';
+
+    return Execute(path, requires, command, generateCommand(path, dev, command))
 }
 
 module.exports = Manager;

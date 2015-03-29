@@ -40,6 +40,8 @@ function Compare (root, requires) {
 			}
 		});
 
+		var unused = diff(dependencies, requires);
+
 		var differences = diff(requires, dependencies);
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {
@@ -50,7 +52,7 @@ function Compare (root, requires) {
 			log.push('\n $ ranza install --save')
 		}
 
-		resolve([differences, dependencies, requires, log.join('\n')]);
+		resolve([differences, unused, dependencies, log.join('\n')]);
 	});
 }
 

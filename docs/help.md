@@ -6,10 +6,13 @@ More info: https://github.com/raphamorim/ranza
 
 Commands:
  ranza status         status about all dependencies from project
- ranza install        install all dependencies
- ranza watch          watch and report dependencies status
- ranza clean          clean all not used dependencies
- ranza serve <path>   build app and update dependencies as added
+ ranza install        install all requires from project
+ ranza watch          livereload for ranza install
+ ranza clean          clean all unused dependencies
+
+Additionals:
+ --save		      save/delete require in package.json as dependency
+ --save-dev	      save/delete require in package.json as devDependency
 
 Options:
  -a, --all             output saved commands

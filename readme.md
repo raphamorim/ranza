@@ -1,4 +1,4 @@
-# Ranza (UNSTABLE)
+# Ranza
 
 > The npm butler
 
@@ -48,7 +48,15 @@ Search and install all dependencies requires in all files and save as `devDepend
 $ ranza install --save-dev
 ```
 
-#### Watch (unstable)
+#### Clean
+
+Remove and clean all unused dependencies from `package.json`
+
+```sh
+$ ranza clean
+```
+
+#### Watch
 
 Livereload in all files, installing undefined dependencies without save:
 

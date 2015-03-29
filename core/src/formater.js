@@ -1,6 +1,6 @@
 'use strict';
 
-function Cleaner(arr) {
+function Formater(arr) {
   var newArr = [];
   if (typeof arr === 'object') {
   	arr.forEach(function(item, index) {
@@ -14,4 +14,4 @@ function Cleaner(arr) {
   }
 }
 
-module.exports = Cleaner;
+module.exports = Formater;

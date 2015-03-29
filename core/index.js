@@ -1,15 +1,13 @@
 'use strict';
 
-var Promises = require('bluebird');
-
 var Core = {
 	'sentinel': require('./src/sentinel'),
 
+	'searcher': require('./src/searcher'),
+
 	'manager': require('./src/manager'),
 
-	'installer': require('./src/installer'),
-
-	'cleaner': require('./src/cleaner'),
+	'formater': require('./src/formater'),
 
 	'reader': require('./src/reader'),
 

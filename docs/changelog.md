@@ -1,8 +1,12 @@
 # Changelog
 
+## Vr. 0.2.1
+
+- Added clean feature
+
 ## Vr. 0.2.0
 
-- Added watch feature (still unstable)
+- Added watch feature
 - Improve install feature
 - Added Promises in most functions
 

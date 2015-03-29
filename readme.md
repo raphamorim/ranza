@@ -4,7 +4,11 @@
 
 Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you
 
-Don't be shy, send a Pull Request :)
+`Don't be shy, send a Pull Request`
+
+A ranza watch command example:
+
+![Ranza watch](docs/images/watch.gif)
 
 ## Install
 
@@ -58,11 +62,19 @@ $ ranza clean
 
 #### Watch
 
+**(not recommended)**
+
+Cause: Install all dependencies in each livereload
+
 Livereload in all files, installing undefined dependencies without save:
 
 ```sh
 $ ranza watch
 ```
+ 
+**(recommended)**
+
+Cause: Only install missed dependencies in each livereload
 
 Livereload in all files, installing undefined dependencies and saving as `dependencies` in `package.json`:
 

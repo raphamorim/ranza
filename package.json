@@ -1,6 +1,6 @@
 {
   "name": "ranza",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Syncronize and manage all project dependencies",
   "main": "./lib/index.js",
   "bin": "./bin/ranza.js",

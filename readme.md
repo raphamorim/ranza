@@ -4,13 +4,9 @@
 
 Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you.
 
-A ranza **status** commad example:
+A simple **status** example:
 
 ![Ranza Status](docs/images/status.gif)
-
-A ranza **watch** command example:
-
-![Ranza Watch](docs/images/watch.gif)
 
 ## Install
 
@@ -58,7 +54,7 @@ Remove and clean all unused dependencies from `package.json`
 $ ranza clean
 ```
 
-#### Watch
+#### Watch (only for HARDCORE developers)
 
 **(not recommended)**
 
@@ -85,6 +81,10 @@ Livereload in all files, installing undefined dependencies and saving as `devDep
 ```sh
 $ ranza watch --save-dev
 ```
+
+Example: 
+
+![Ranza Watch](docs/images/watch.gif)
 
 ## History
 

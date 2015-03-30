@@ -1,10 +1,12 @@
 # Ranza
 
-> The npm butler
+> The npm's butler
 
-Search all your requires in the project and manages what is missing in `package.json` file. Or rather: Search for unidentified dependencies in `package.json` and notifies you.
+Quickly spot any dependency required in the project and not listed in `package.json`. And also the other way around: quickly remove listed dependencies that are being used.
 
-A ranza **status** commad example:
+Run whenever you need or use the `watch` command to install dependencies automatically as you write `require`s on your project.
+
+A ranza **status** command example:
 
 ![Ranza Status](docs/images/status.gif)
 
@@ -14,7 +16,7 @@ A ranza **watch** command example:
 
 ## Install
 
-Before anything, you need to have [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed.
+With [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed, install ranza with a single command:
 
 ```sh
 $ npm install -g ranza
@@ -24,7 +26,7 @@ $ npm install -g ranza
 
 #### Status
 
-Run in folder root to get the status from all dependencies in `package.json`
+Checks all project for required dependencies and confirms if they are listed on `package.json`:
 
 ```sh
 $ ranza status
@@ -32,19 +34,19 @@ $ ranza status
 
 #### Install
 
-Search and install all dependencies requires in all files without save:
+Installs all dependencies required throughout the project, but do not save them in `package.json`:
 
 ```sh
 $ ranza install
 ```
 
-Search and install all dependencies requires in all files and save as `dependencies` in `package.json`:
+Installs all dependencies required throughout the project and add them to `package.json` as `dependencies`:
 
 ```sh
 $ ranza install --save
 ```
 
-Search and install all dependencies requires in all files and save as `devDependencies` in `package.json`:
+Installs all dependencies required throughout the project and save them in `package.json` as `devDependencies`:
 
 ```sh
 $ ranza install --save-dev
@@ -52,7 +54,7 @@ $ ranza install --save-dev
 
 #### Clean
 
-Remove and clean all unused dependencies from `package.json`
+Remove and clean all unused dependencies from `package.json`:
 
 ```sh
 $ ranza clean
@@ -60,27 +62,27 @@ $ ranza clean
 
 #### Watch
 
-**(not recommended)**
+**The not recommended way:**
 
-> Cause: Install all dependencies in each livereload
+> Installs every single dependencies in each livereload
 
-Livereload in all files, installing undefined dependencies without save:
+Livereload in all files, installing undefined dependencies without saving them in `package.json`:
 
 ```sh
 $ ranza watch
 ```
  
-**(recommended)**
+**The recommended way:**
 
-> Cause: Only install missed dependencies in each livereload
+> Installs only missed dependencies in each livereload
 
-Livereload in all files, installing undefined dependencies and saving as `dependencies` in `package.json`:
+Livereload in all files, installing undefined dependencies and saving them as `dependencies` in `package.json`:
 
 ```sh
 $ ranza watch --save
 ```
 
-Livereload in all files, installing undefined dependencies and saving as `devDependencies` in `package.json`:
+Livereload in all files, installing undefined dependencies and saving them as `devDependencies` in `package.json`:
 
 ```sh
 $ ranza watch --save-dev
@@ -92,7 +94,7 @@ See [Changelog](docs/changelog.md) for more details.
 
 ## Contributing
 
-Don't be shy, send a Pull Request
+Don't be shy, send a Pull Request! Here is how:
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

@@ -10,7 +10,7 @@ function Formater(arr) {
 
   	return newArr.filter(function(item, pos) {
     	return newArr.indexOf(item) == pos;
-	});
+	  });
   }
 }
 

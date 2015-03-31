@@ -45,13 +45,20 @@ function Execute(path, requires, command, sh) {
 }
 
 function Manager(command, path, requires, dev, print) {
-    if (typeof print === 'undefined') print = false;
+    return new Promises(function(resolve, reject) {
+        if (requires.length <= 0)
+            return reject('There is no requires to install!');
 
-    generateLog(command, print);
+        if (typeof print === 'undefined') 
+            print = false;
 
-    if (command === 'remove') dev = '--save';
+        if (command === 'remove') 
+            dev = '--save';
 
-    return Execute(path, requires, command, generateCommand(path, dev, command))
+        generateLog(command, print);
+
+        return Execute(path, requires, command, generateCommand(path, dev, command))
+    });
 }
 
 module.exports = Manager;

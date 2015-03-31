@@ -10,14 +10,17 @@ function diff (arr, diff){
 function Compare (root, requires) {
 	return new Promises(function(resolve, reject) {
 		var pJson = require(root + '/package.json');
-		var log = [];
+		var log = [],
+			successLog = [],
+			unusedLog = [],
+			undefinedLog = [];
 
 		var dependencies = new Array(),
 			normal = pJson.dependencies || {},
 			dev = pJson.devDependencies || {};
 
 		if (requires.length <= 0 && dependencies.length <= 0) {
-			reject({'error': 'Ranza say: There is no dependencies or requires!'});
+			return reject('There is no dependencies or requires!');
 		}
 
 		normal = (Object.keys(normal));
@@ -29,14 +32,14 @@ function Compare (root, requires) {
     		return dependencies.indexOf(item) == pos;
 		});
 
-		log.push('[RANZA STATUS]\n');
+		log.push('[RANZA STATUS]');
 
 		dependencies.forEach(function(dependency) {
 			var index = requires.indexOf(dependency);
 			if (index < 0) {
-				log.push(colorizer('error','[FAIL]') + ' <' + dependency + '> is defined but is not being used')
+				unusedLog.push('  • ' + dependency)
 			} else {
-				log.push(colorizer('success','[OK]') + ' <' + dependency + '> is defined and used')
+				successLog.push('  • ' + dependency)
 			}
 		});
 
@@ -45,11 +48,23 @@ function Compare (root, requires) {
 		var differences = diff(requires, dependencies);
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {
-				log.push(colorizer('error','[FAIL]') + ' <' + diff + '> is being used, without define')
+				undefinedLog.push('  • ' + diff)
 			})
+		}
 
-			log.push('\nTip: To install undefined requires run:')
-			log.push('\n $ ranza install --save')
+		if (successLog.length > 0) {
+			log.push(colorizer('success','\n Defined and used:'))
+			log.push(successLog.join('\n'))
+		}
+
+		if (unusedLog.length > 0) {
+			log.push(colorizer('error','\n Defined, but unused:'))
+			log.push(unusedLog.join('\n'))
+		}
+
+		if (undefinedLog.length > 0) {
+			log.push(colorizer('error','\n Undefined, but used:'))
+			log.push(undefinedLog.join('\n'))	
 		}
 
 		resolve([differences, unused, dependencies, log.join('\n')]);

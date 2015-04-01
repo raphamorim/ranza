@@ -37,9 +37,9 @@ function Compare (root, requires) {
 		dependencies.forEach(function(dependency) {
 			var index = requires.indexOf(dependency);
 			if (index < 0) {
-				unusedLog.push('  • ' + dependency)
+				unusedLog.push(colorizer('error', '  • ') + dependency)
 			} else {
-				successLog.push('  • ' + dependency)
+				successLog.push(colorizer('success', '  • ') + dependency)
 			}
 		});
 
@@ -48,7 +48,7 @@ function Compare (root, requires) {
 		var differences = diff(requires, dependencies);
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {
-				undefinedLog.push('  • ' + diff)
+				undefinedLog.push(colorizer('error', '  • ') + diff)
 			})
 		}
 

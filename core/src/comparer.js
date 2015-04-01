@@ -40,8 +40,14 @@ function Compare (root, requires) {
 		var gruntDependencies = dependencies.filter(function(item){ 
 			if (item.indexOf('grunt') >= 0) return true });
 
-		if (gruntDependencies.length >= 0) {
-			var gruntFile = adapter.gruntDependencies(root + 'Gruntfile.js');
+		if (gruntDependencies.length > 0) {
+			var gruntfilePath = root + 'Gruntfile.js',
+				gruntFile = '';
+
+			if (require('fs').existsSync(gruntfilePath)) {
+				gruntFile = adapter.gruntDependencies(gruntfilePath);
+			}
+
 			gruntDependencies.forEach(function(gruntDependency){
 				if (gruntFile.indexOf(gruntDependency) < 0){
 					unusedLog.push(colorizer('error', '  • ') + gruntDependency)

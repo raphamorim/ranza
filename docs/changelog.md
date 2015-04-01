@@ -1,5 +1,10 @@
 # Changelog
 
+## Vr. 0.2.5
+
+- Gruntfile Support
+- Better error handling
+
 ## Vr. 0.2.1
 
 - Added clean feature

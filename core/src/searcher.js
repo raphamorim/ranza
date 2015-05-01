@@ -11,8 +11,9 @@ function Searcher (paths) {
 };
 
 function search (paths) {
-    var requires = new Array();
-    var validPaths = new Array();
+    var requires = [];
+    var validPaths = [];
+    var where = {};
 
     paths.forEach(function(path){
         if (path.indexOf('node_modules/') === -1) {
@@ -31,6 +32,8 @@ function search (paths) {
                     if ((dependency.indexOf('/') == -1) && (dependency.indexOf('.js') == -1)) {                        if (apiNode.indexOf(dependency) == -1) {
                             requires.push(dependency);
                             validPaths.push(path);
+                            where[dependency] = where[dependency] || []
+                            where[dependency].push(path);
                         }
                     }
                 });
@@ -38,7 +41,7 @@ function search (paths) {
         }
     });
 
-    return {'requires': requires, 'validPaths': validPaths};
+    return {'requires': requires, 'validPaths': validPaths, where: where};
 }
 
 module.exports = Searcher;

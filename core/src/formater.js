@@ -4,7 +4,7 @@ function Formater(arr) {
   var newArr = [];
   if (typeof arr === 'object') {
   	arr.forEach(function(item, index) {
-  		if (/^[A-Za-z0-9\s_-]+$/.test(item))
+  		if (/^[A-Za-z0-9\s\\._-]+$/.test(item))
   			newArr.push(item);
   	});
 

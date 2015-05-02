@@ -1,14 +1,25 @@
 'use strict';
 
-var Promises = require('bluebird'), 
+var Promises = require('bluebird'),
 	colorizer = require('./colorizer'),
-	adapter = require('./adapter');
+	adapter = require('./adapter'),
+	path = require('path');
 
 function diff (arr, diff){
     return arr.filter(function(i) {return diff.indexOf(i) < 0;});
 }
 
-function Compare (root, requires) {
+function debug(log,  options, dependency) {
+	if (!options.debug)
+		return;
+	var files = (options.where[dependency] || []).map(path.relative.bind(path, options.root));
+	log.push('     => ' + (files).join('\n     => ') + '\n');
+}
+
+function Compare (root, requires, options) {
+	options = options || {};
+	options.debug = options.debug || false;
+	options.root = root;
 	return new Promises(function(resolve, reject) {
 		var pJson = require(root + '/package.json');
 		var log = [],
@@ -37,7 +48,7 @@ function Compare (root, requires) {
 
 
 		/* Dependency Comparator */
-		var gruntDependencies = dependencies.filter(function(item){ 
+		var gruntDependencies = dependencies.filter(function(item){
 			if (item.indexOf('grunt') >= 0) return true });
 
 		if (gruntDependencies.length > 0) {
@@ -57,7 +68,7 @@ function Compare (root, requires) {
 			})
 		}
 
-		dependencies = dependencies.filter(function(item){ 
+		dependencies = dependencies.filter(function(item){
 			if (item.indexOf('grunt') === -1) return true });
 
 		dependencies.forEach(function(dependency) {
@@ -66,15 +77,18 @@ function Compare (root, requires) {
 				unusedLog.push(colorizer('error', '  • ') + dependency)
 			} else {
 				successLog.push(colorizer('success', '  • ') + dependency)
+				debug(successLog, options, dependency);
 			}
 		});
 
 		var unused = diff(dependencies, requires);
 
 		var differences = diff(requires, dependencies);
+
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {
 				undefinedLog.push(colorizer('error', '  • ') + diff)
+				debug(undefinedLog, options, diff);
 			})
 		}
 
@@ -90,7 +104,7 @@ function Compare (root, requires) {
 
 		if (undefinedLog.length > 0) {
 			log.push(colorizer('error','\n Undefined, but used:'))
-			log.push(undefinedLog.join('\n'))	
+			log.push(undefinedLog.join('\n'));
 		}
 
 		resolve([differences, unused, dependencies, log.join('\n')]);

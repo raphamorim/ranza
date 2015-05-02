@@ -28,6 +28,31 @@ Checks all project for required dependencies and confirms if they are listed on 
 $ ranza status
 ```
 
+You can use status with debug option as arguments, to best view requires status showing the occurrence files, ex:
+
+**input:**
+
+```sh
+$ ranza status --debug
+```
+
+**some output example:**
+
+```sh
+Defined and used:
+  • babel-core
+     => lib/new.js
+
+  • bluebird
+     => core/src/comparer.js
+     => core/src/manager.js
+     => core/src/sentinel.js
+
+Defined, but unused:
+  • grunt
+  • babel
+```
+
 #### Install
 
 Installs all dependencies required throughout the project, but do not save them in `package.json`:
@@ -67,7 +92,7 @@ Livereload in all files, installing undefined dependencies without saving them i
 ```sh
 $ ranza watch
 ```
- 
+
 **The recommended way:**
 
 > Installs only missed dependencies in each livereload
@@ -84,7 +109,7 @@ Livereload in all files, installing undefined dependencies and saving them as `d
 $ ranza watch --save-dev
 ```
 
-Example: 
+Example:
 
 ![Ranza Watch](docs/images/watch.gif)
 

@@ -3,8 +3,7 @@
 var Promises = require('bluebird'),
 	colorizer = require('./colorizer'),
 	adapter = require('./adapter'),
-	path = require('path'),
-	DEFAULT_NODE_MODULES = ['url', 'cluster', 'domain', 'path', 'fs', 'http', 'util'];
+	path = require('path');
 
 function diff (arr, diff){
     return arr.filter(function(i) {return diff.indexOf(i) < 0;});
@@ -85,7 +84,6 @@ function Compare (root, requires, options) {
 		var unused = diff(dependencies, requires);
 
 		var differences = diff(requires, dependencies);
-		differences = diff(differences, DEFAULT_NODE_MODULES);
 
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {

@@ -18,3 +18,4 @@ Options:
  -a, --all             output saved commands
  -v, --version         output version number
  -h, --help            output usage information
+ -d, --debug           output status command in debug mode

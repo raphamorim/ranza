@@ -1,5 +1,6 @@
-module.exports = {
+var colorizer = require('./colorizer');
 
+module.exports = {
     options : {
         yes:    ['yes','y'],
         no:     ['no','n']
@@ -47,14 +48,13 @@ module.exports = {
     },
 
     _invalidHandler: function(question, defaultvalue, callback, yesvalues, novalues) {
-        process.stdout.write("\nInvalid Response.\n");
-        process.stdout.write("Answer either yes : ("+ yesvalues.join(', ')+') \n');
-        process.stdout.write("Or no: ("+ novalues.join(', ')+') \n\n');
+        process.stdout.write(colorizer('message', "\nInvalid Response.\n"));
+        process.stdout.write("Answer either yes : ("+ yesvalues.join(', ')+')');
+        process.stdout.write(", or no: ("+ novalues.join(', ')+')\n');
         this.ask(question,defaultvalue,callback,yesvalues,novalues);
     },
 
     resetInvalidHandler: function() {
         this.onInvalidHandler(this._invalidHandler);
     }
-
 };

@@ -15,7 +15,9 @@ var Core = {
 
 	'compare': require('./src/comparer'),
 
-	'colorizer': require('./src/colorizer')
+	'colorizer': require('./src/colorizer'),
+	
+	'yesno': require('./src/yesno')
 };
 
 module.exports = Core;

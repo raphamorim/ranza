@@ -1,5 +1,3 @@
-'use strict';
-
 var Promises = require('bluebird'),
     shell = Promises.promisifyAll(require('child_process')),
     colorizer = require('./colorizer');

@@ -1,5 +1,3 @@
-'use strict';
-
 var Promises = require('bluebird'),
 	colorizer = require('./colorizer'),
 	adapter = require('./adapter'),

@@ -1,7 +1,4 @@
-'use strict';
-
 var Promises = require('bluebird');
-
 var watch = require('node-watch'),
     glob = Promises.promisify(require('glob')),
     rooter = require('./rooter');

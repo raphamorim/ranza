@@ -1,5 +1,3 @@
-'use strict';
-
 var suportColors = process.env ? require('supports-color') : null,
     useColors = suportColors && true;
 

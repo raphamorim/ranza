@@ -1,10 +1,6 @@
-'use strict';
-
 var fs   = require('fs'),
     path = require('path'),
-    config = require('../config');
-    
-var apiNode = config.apiNode;
+    apiNode = require('../lib/nodeApis');
 
 function Searcher (paths) {
     return search(paths);

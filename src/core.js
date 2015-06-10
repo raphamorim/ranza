@@ -1,7 +1,7 @@
 'use strict';
 
 var Core = {
-	'sentinel': require('./core/sentinel'),
+	'watcher': require('./core/watcher'),
 
 	'searcher': require('./core/searcher'),
 
@@ -17,7 +17,7 @@ var Core = {
 
 	'colorizer': require('./core/colorizer'),
 	
-	'yesno': require('./core/yesno')
+	'asker': require('./core/asker')
 };
 
 module.exports = Core;

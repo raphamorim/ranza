@@ -3,7 +3,7 @@ var watch = require('node-watch'),
     glob = Promises.promisify(require('glob')),
     rooter = require('./rooter');
 
-function Sentinel(path) {
+function Watcher(path) {
     return new Promises(function(resolve, reject) {
         var root = rooter(path),
             globOptions = {};
@@ -14,4 +14,4 @@ function Sentinel(path) {
     });
 }
 
-module.exports = Sentinel;
+module.exports = Watcher;

@@ -1,20 +1,21 @@
-var colorizer = require('./colorizer');
+var Promises = require('bluebird'),
+    colorizer = require('./colorizer');
 
-module.exports = {
-    options : {
+var asker = {
+    options: {
         yes:    ['yes','y'],
         no:     ['no','n']
     },
 
-    ask : function (question, defaultvalue, callback, yesvalues, novalues) {
-        self = this;
+    ask: function (question, defaultvalue, callback, yesvalues, novalues) {
+        var self = this;
 
-        if (!this.__invalid) {
-            this.resetInvalidHandler();
+        if (!self.__invalid) {
+            self.resetInvalidHandler();
         }
 
-        yesvalues = yesvalues ? yesvalues : this.options.yes;
-        novalues  = novalues  ? novalues : this.options.no;
+        yesvalues = yesvalues ? yesvalues : self.options.yes;
+        novalues  = novalues  ? novalues : self.options.no;
 
         yesvalues = yesvalues.map(function(v) { return v.toLowerCase(); });
         novalues  = novalues.map(function(v) { return v.toLowerCase(); });
@@ -58,3 +59,6 @@ module.exports = {
         this.onInvalidHandler(this._invalidHandler);
     }
 };
+
+var Asker = asker.ask.bind(asker, 'Are you sure you want to continue? (y/n)', true);
+module.exports = Asker;

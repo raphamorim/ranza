@@ -1,5 +1,5 @@
 var ranza = require('./ranza'),
-    verify = require('./cli').verify,
+    verify = require('./lib/utils').verify,
     commands = process.argv;
 
 if (verify(['-v', '--version']))

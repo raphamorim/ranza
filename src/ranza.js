@@ -1,7 +1,7 @@
 'use strict';
 
 var pJson = require('../package.json'),
-    core = require('../core/'),
+    core = require('./core'),
     watch = require('node-watch'),
     installFlag = false;
 

@@ -1,23 +1,23 @@
 'use strict';
 
 var Core = {
-	'sentinel': require('./src/sentinel'),
+	'sentinel': require('./core/sentinel'),
 
-	'searcher': require('./src/searcher'),
+	'searcher': require('./core/searcher'),
 
-	'manager': require('./src/manager'),
+	'manager': require('./core/manager'),
 
-	'formater': require('./src/formater'),
+	'formater': require('./core/formater'),
 
-	'reader': require('./src/reader'),
+	'reader': require('./core/reader'),
 
-	'root': require('./src/rooter'),
+	'root': require('./core/rooter'),
 
-	'compare': require('./src/comparer'),
+	'compare': require('./core/comparer'),
 
-	'colorizer': require('./src/colorizer'),
+	'colorizer': require('./core/colorizer'),
 	
-	'yesno': require('./src/yesno')
+	'yesno': require('./core/yesno')
 };
 
 module.exports = Core;

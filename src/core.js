@@ -17,7 +17,7 @@ var Core = {
 
 	'colorizer': require('./core/colorizer'),
 	
-	'asker': require('./core/asker')
+	'asker': require('./core/asker'),
 };
 
 module.exports = Core;

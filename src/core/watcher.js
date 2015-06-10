@@ -1,6 +1,5 @@
 var Promises = require('bluebird');
-var watch = require('node-watch'),
-    glob = Promises.promisify(require('glob')),
+var glob = Promises.promisify(require('glob')),
     rooter = require('./rooter');
 
 function Watcher(path) {

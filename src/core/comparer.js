@@ -42,8 +42,6 @@ function Compare (root, requires, options) {
     		return dependencies.indexOf(item) == pos;
 		});
 
-		log.push('[RANZA STATUS]');
-
 		/* Dependency Comparator */
 		var gruntDependencies = dependencies.filter(function(item){
 			if (item.indexOf('grunt') >= 0) return true });

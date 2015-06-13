@@ -2,7 +2,7 @@
 
 ## Vr. 1.0.0
 
-- Stable versio
+- Stable version
 - Major rewrite
 - Debug option, ask before clean or install
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## Vr. 1.0.0
+
+- Stable versio
+- Major rewrite
+- Debug option, ask before clean or install
+
 ## Vr. 0.2.5
 
 - Gruntfile Support

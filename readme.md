@@ -2,6 +2,9 @@
 
 > The npm's butler
 
+[![NPM Version](https://img.shields.io/npm/v/express.svg?style=flat)](https://www.npmjs.org/package/ranza)
+[![Build Status](https://travis-ci.org/raphamorim/ranza.svg)](https://travis-ci.org/raphamorim/ranza)
+
 Quickly spot any dependency required in the project and not listed in `package.json`. And also the other way around: quickly remove listed dependencies that are being used.
 
 Run whenever you need or use the `watch` command to install dependencies automatically as you write `require`s on your project.

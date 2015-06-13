@@ -1,5 +1,3 @@
-'use strict';
-
 var Promises = require('bluebird'),
     shell = Promises.promisifyAll(require('child_process')),
     colorizer = require('./colorizer');
@@ -9,7 +7,6 @@ function generateCommand(path, dev, command) {
     if (dev) save = ' ' + dev;
 
     var sh = 'cd ' + path + ' && npm ' + command + save + ' ';
-
     return function(req) {
         return sh + req;
     }
@@ -19,12 +16,8 @@ function generateLog(command, print) {
     if (!print) return false;
 
     if (command === 'install') {
-        console.log('[RANZA INSTALL] \n');
         console.log(colorizer('success', 'Ranza say: It\'s installing...\n'));
-    }
-
-    else if (command === 'remove') {
-        console.log('[RANZA CLEAN] \n');
+    } else if (command === 'remove') {
         console.log(colorizer('success', 'Ranza say: It\'s removing...\n'));
     }
 }
@@ -39,7 +32,7 @@ function Execute(path, requires, command, sh) {
                 return console.log(colorizer('error', 'Ocurred a error: ' + err));
             })
         }, {concurrency: 1}).then(function(){
-            resolve()
+            resolve();
         });
     });
 }
@@ -56,7 +49,6 @@ function Manager(command, path, requires, dev, print) {
             dev = '--save';
 
         generateLog(command, print);
-
         return Execute(path, requires, command, generateCommand(path, dev, command))
     });
 }

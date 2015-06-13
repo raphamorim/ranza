@@ -1,1 +1,1 @@
-module.exports = require('./lib/ranza.js');
+module.exports = require('./src/ranza.js');

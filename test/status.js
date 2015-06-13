@@ -16,7 +16,7 @@ describe('Status', function() {
 				fakeCwd('perfectProject');
 				Ranza.setModuleMode(true)
 
-				Ranza.exec(function(status) {
+				Ranza.status(function(status) {
 					assert.deepEqual(typeof(status), 'object');
 					assert.deepEqual(status.undefinedUsed, []);
 					assert.deepEqual(status.definedUnused, []);

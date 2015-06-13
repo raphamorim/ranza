@@ -1,5 +1,3 @@
-'use strict';
-
 var Promises = require('bluebird'),
 	colorizer = require('./colorizer'),
 	adapter = require('./adapter'),
@@ -44,9 +42,6 @@ function Compare (root, requires, options) {
     		return dependencies.indexOf(item) == pos;
 		});
 
-		log.push('[RANZA STATUS]');
-
-
 		/* Dependency Comparator */
 		var gruntDependencies = dependencies.filter(function(item){
 			if (item.indexOf('grunt') >= 0) return true });
@@ -72,8 +67,7 @@ function Compare (root, requires, options) {
 			if (item.indexOf('grunt') === -1) return true });
 
 		dependencies.forEach(function(dependency) {
-			var index = requires.indexOf(dependency);
-			if (index < 0) {
+			if (requires.indexOf(dependency) < 0) {
 				unusedLog.push(colorizer('error', '  • ') + dependency)
 			} else {
 				successLog.push(colorizer('success', '  • ') + dependency)
@@ -81,9 +75,8 @@ function Compare (root, requires, options) {
 			}
 		});
 
-		var unused = diff(dependencies, requires);
-
-		var differences = diff(requires, dependencies);
+		var unused = diff(dependencies, requires),
+			differences = diff(requires, dependencies);
 
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {

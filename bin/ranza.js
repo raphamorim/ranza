@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
 (function() {
-    var ranza = require('../lib/index.js');
+    var ranza = require('../src/cli.js');
 })();

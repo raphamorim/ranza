@@ -1,5 +1,3 @@
-'use strict';
-
 function Formater(arr) {
   var newArr = [];
   if (typeof arr === 'object') {

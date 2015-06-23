@@ -1,5 +1,3 @@
-'use strict';
-
 var Core = {
 	'asker': require('./core/asker'),
 	'colorizer': require('./core/colorizer'),

@@ -3,16 +3,14 @@ var Promises = require('bluebird'),
 
 var asker = {
     options: {
-        yes:    ['yes','y'],
-        no:     ['no','n']
+        yes: ['yes','y'],
+        no: ['no','n']
     },
 
     ask: function (question, defaultvalue, callback, yesvalues, novalues) {
         var self = this;
 
-        if (!self.__invalid) {
-            self.resetInvalidHandler();
-        }
+        if (!self.__invalid) self.resetInvalidHandler();
 
         yesvalues = yesvalues ? yesvalues : self.options.yes;
         novalues  = novalues  ? novalues : self.options.no;

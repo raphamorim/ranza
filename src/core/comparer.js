@@ -4,12 +4,11 @@ var Promises = require('bluebird'),
 	path = require('path');
 
 function diff (arr, diff){
-    return arr.filter(function(i) {return diff.indexOf(i) < 0;});
+    return arr.filter(function(i) {return diff.indexOf(i) < 0});
 }
 
 function debug(log,  options, dependency) {
-	if (!options.debug)
-		return;
+	if (!options.debug) return;
 	var files = (options.where[dependency] || []).map(path.relative.bind(path, options.root));
 	log.push('     => ' + (files).join('\n     => ') + '\n');
 }
@@ -19,15 +18,17 @@ function Compare (root, requires, options) {
 	options.debug = options.debug || false;
 	options.root = root;
 	return new Promises(function(resolve, reject) {
-		var pJson = require(root + '/package.json');
+		var packageJson = require(root + '/package.json');
+		
 		var log = [],
 			successLog = [],
 			unusedLog = [],
 			undefinedLog = [];
 
-		var dependencies = new Array(),
-			normal = pJson.dependencies || {},
-			dev = pJson.devDependencies || {};
+		var dependencies = [],
+			usedDependencies = [],
+			normal = packageJson.dependencies || {},
+			dev = packageJson.devDependencies || {};
 
 		normal = (Object.keys(normal));
 		dev = (Object.keys(dev));
@@ -56,9 +57,10 @@ function Compare (root, requires, options) {
 
 			gruntDependencies.forEach(function(gruntDependency){
 				if (gruntFile.indexOf(gruntDependency) < 0){
-					unusedLog.push(colorizer('error', '  • ') + gruntDependency)
+					unusedLog.push(colorizer('error', '  • ') + gruntDependency);
 				} else {
-					successLog.push(colorizer('success', '  • ') + gruntDependency)
+					usedDependencies.push(dependency);
+					successLog.push(colorizer('success', '  • ') + gruntDependency);
 				}
 			})
 		}
@@ -68,39 +70,40 @@ function Compare (root, requires, options) {
 
 		dependencies.forEach(function(dependency) {
 			if (requires.indexOf(dependency) < 0) {
-				unusedLog.push(colorizer('error', '  • ') + dependency)
+				unusedLog.push(colorizer('error', '  • ') + dependency);
 			} else {
-				successLog.push(colorizer('success', '  • ') + dependency)
+				usedDependencies.push(dependency);
+				successLog.push(colorizer('success', '  • ') + dependency);
 				debug(successLog, options, dependency);
 			}
 		});
 
-		var unused = diff(dependencies, requires),
+		var unusedDependencies = diff(dependencies, requires),
 			differences = diff(requires, dependencies);
 
 		if (differences.length > 0) {
 			differences.forEach(function(diff) {
-				undefinedLog.push(colorizer('error', '  • ') + diff)
+				undefinedLog.push(colorizer('error', '  • ') + diff);
 				debug(undefinedLog, options, diff);
 			})
 		}
 
 		if (successLog.length > 0) {
-			log.push(colorizer('success','\n Defined and used:'))
-			log.push(successLog.join('\n'))
+			log.push(colorizer('success','\n Defined and used:'));
+			log.push(successLog.join('\n'));
 		}
 
 		if (unusedLog.length > 0) {
-			log.push(colorizer('error','\n Defined, but unused:'))
-			log.push(unusedLog.join('\n'))
+			log.push(colorizer('error','\n Defined, but unused:'));
+			log.push(unusedLog.join('\n'));
 		}
 
 		if (undefinedLog.length > 0) {
-			log.push(colorizer('error','\n Undefined, but used:'))
+			log.push(colorizer('error','\n Undefined, but used:'));
 			log.push(undefinedLog.join('\n'));
 		}
 
-		resolve([differences, unused, dependencies, log.join('\n')]);
+		resolve([differences, unusedDependencies, usedDependencies, log.join('\n')]);
 	});
 }
 

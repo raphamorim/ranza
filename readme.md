@@ -11,7 +11,7 @@ Run whenever you need or use the `watch` command to install dependencies automat
 
 A simple **status** example:
 
-![Ranza Status](docs/images/status.gif)
+![Ranza Status](docs/images/status.png)
 
 ## Install
 

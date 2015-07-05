@@ -1,7 +1,7 @@
 {
   "name": "ranza",
   "version": "1.0.0",
-  "description": "Syncronize and manage all project dependencies",
+  "description": "The dependency checker",
   "main": "./index.js",
   "bin": "./bin/ranza.js",
   "scripts": {

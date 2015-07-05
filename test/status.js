@@ -14,7 +14,6 @@ describe('Status', function() {
 		context('on a project without missed requires and undefined dependencies', function() {
 			it('should return only the used dependencies and a empty unused/undefined list', function(done) {
 				fakeCwd('perfectDependencies');
-				Ranza.setModuleMode(true)
 
 				Ranza.status(function(status) {
 					assert.deepEqual(typeof(status), 'object');
@@ -28,7 +27,6 @@ describe('Status', function() {
 		context('on a project with unused dependencies', function() {
 			it('should return the unused dependencies', function(done) {
 				fakeCwd('unusedDependecy');
-				Ranza.setModuleMode(true)
 
 				Ranza.status(function(status) {
 					assert.deepEqual(typeof(status), 'object');

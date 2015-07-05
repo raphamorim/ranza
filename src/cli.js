@@ -2,6 +2,8 @@ var ranza = require('./ranza'),
     verify = require('./lib/utils').verify,
     commands = process.argv;
 
+ranza.enableLogs(true);
+
 if (verify(['-v', '--version']))
     return console.log(ranza.version());
 

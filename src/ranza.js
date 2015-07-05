@@ -9,14 +9,12 @@ function throwError(err) {
 
 var Ranza = new Function();
 
-Ranza.prototype.setModuleMode = function(mode) {
-    this.moduleMode = (typeof(mode) === 'undefined' ? false : true);
-    return ('moduleMode enabled');
+Ranza.prototype.enableLogs = function(mode) {
+    this.logs = (typeof(mode) === 'boolean' ? mode : false);
 }
 
 Ranza.prototype.setDebug = function(debug, done, fn) {
     this.debug = (typeof(debug) === 'undefined' ? true : debug);
-    return ('Debug enabled');
 }
 
 Ranza.prototype.default = function() {
@@ -64,7 +62,7 @@ Ranza.prototype.status = function(fn) {
         var searcher = core.searcher(files),
             requires = core.formater(searcher['requires']);
         return core.compare(root, requires, {debug: self.debug, where: searcher.where}).spread(function(diffs, unused, reqs, log) {
-            if (!self.moduleMode) console.log(log + '\n');
+            if (self.logs) console.log(log + '\n');
             
             var status = {
                 undefinedUsed: diffs, 

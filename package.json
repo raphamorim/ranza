@@ -1,6 +1,6 @@
 {
   "name": "ranza",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The dependency checker",
   "main": "./index.js",
   "bin": "./bin/ranza.js",

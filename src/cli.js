@@ -7,7 +7,7 @@ ranza.enableLogs(true);
 if (verify(['-v', '--version']))
     return console.log(ranza.version());
 
-else if (verify(['-h', '--help'])) 
+else if (verify(['-h', '--help']))
     return console.log(ranza.help());
 
 else if (typeof commands[2] != 'undefined') {
@@ -17,7 +17,7 @@ else if (typeof commands[2] != 'undefined') {
     	return ranza.status();
     }
 
-	if (commands.indexOf('clean') > -1) 
+	if (commands.indexOf('clean') > -1)
     	return ranza.clean();
 
 	if (commands.indexOf('install') > -1) {
@@ -25,20 +25,10 @@ else if (typeof commands[2] != 'undefined') {
     		return ranza.install('--save-dev');
 
     	if (commands.indexOf('--save') > -1)
-    		return ranza.install('--save');	
+    		return ranza.install('--save');
 
     	return ranza.install();
 	}
-
-	if (commands.indexOf('watch') > -1) {
-		if (commands.indexOf('--save-dev') > -1)
-    		return ranza.watch('--save-dev');
-
-    	if (commands.indexOf('--save') > -1)
-    		return ranza.watch('--save');	
-
-    	return ranza.watch();
-	}
-} 
+}
 
 console.log(ranza.default());

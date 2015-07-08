@@ -13,7 +13,6 @@ function search (paths) {
 
     paths.forEach(function(path){
         if (path.indexOf('node_modules/') !== -1) return;
-        
         var data = fs.readFileSync(path, 'utf8');
         var dependecies = data.match(/require(\(.*?)\)/g);
 

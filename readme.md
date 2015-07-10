@@ -1,6 +1,6 @@
 # Ranza
 
-> The npm's butler
+> The dependency checker
 
 [![NPM Version](https://img.shields.io/npm/v/express.svg?style=flat)](https://www.npmjs.org/package/ranza)
 [![Build Status](https://travis-ci.org/raphamorim/ranza.svg)](https://travis-ci.org/raphamorim/ranza)
@@ -11,7 +11,7 @@ Quickly spot any dependency required in the project and not listed in `package.j
 
 Avoid accumulation of dependencies that are not being used.
 
-## Install
+## Getting Started
 
 With [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed, install ranza with a single command.
 

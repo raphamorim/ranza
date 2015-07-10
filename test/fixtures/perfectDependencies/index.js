@@ -1,3 +1,1 @@
-// requires
-var bluebird = require('bluebird'),
-	glob = require('glob');
+var bluebird = require('bluebird'), glob = require( 'glob' );

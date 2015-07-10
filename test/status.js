@@ -10,8 +10,8 @@ function fakeCwd(path) {
 }
 
 describe('Status', function() {
-	context('apply status command', function() {
-		context('on a project without missed requires and undefined dependencies', function() {
+	context('run on project', function() {
+		context('without missed requires and undefined dependencies', function() {
 			it('should return only the used dependencies and a empty unused/undefined list', function(done) {
 				fakeCwd('perfectDependencies');
 
@@ -24,9 +24,9 @@ describe('Status', function() {
 				});
 			})
 		})
-		context('on a project with unused dependencies', function() {
+		context('with unused dependencies', function() {
 			it('should return the unused dependencies', function(done) {
-				fakeCwd('unusedDependecy');
+				fakeCwd('unusedDependency');
 
 				Ranza.statusAsync(function(status) {
 					assert.deepEqual(typeof(status), 'object');
@@ -37,5 +37,5 @@ describe('Status', function() {
 				});
 			})
 		})
-	});
+	})
 });

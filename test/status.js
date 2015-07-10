@@ -10,7 +10,7 @@ function fakeCwd(path) {
 }
 
 describe('Status', function() {
-	context('run on project', function() {
+	context('run project', function() {
 		context('without missed requires and undefined dependencies', function() {
 			it('should return only the used dependencies and a empty unused/undefined list', function(done) {
 				fakeCwd('perfectDependencies');

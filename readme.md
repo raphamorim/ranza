@@ -90,6 +90,26 @@ Remove and clean all unused dependencies from `package.json`:
 $ ranza clean
 ```
 
+## Node Module Usage
+
+You can check the dependencies status using:
+
+```javascript
+var ranza = require('ranza');
+
+ranza.status(function(status) {
+	/* 
+	status = { 
+		undefinedUsed: [], 
+		definedUnused: [ 'ejs'], 
+		definedUsed: [ 'express', 'kenobi' ] 
+	}
+	*/
+
+	console.log(status)
+});
+```
+
 ## History
 
 See [Changelog](docs/changelog.md) for more details.

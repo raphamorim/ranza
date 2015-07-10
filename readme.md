@@ -1,27 +1,33 @@
 # Ranza
 
-> The npm's butler
+> The dependency checker
 
 [![NPM Version](https://img.shields.io/npm/v/express.svg?style=flat)](https://www.npmjs.org/package/ranza)
 [![Build Status](https://travis-ci.org/raphamorim/ranza.svg)](https://travis-ci.org/raphamorim/ranza)
 
-Quickly spot any dependency required in the project and not listed in `package.json`. And also the other way around: quickly remove listed dependencies that are being used.
+Quickly spot any dependency required in the project and not listed in `package.json`. And also the other way around: quickly remove listed dependencies that are not being used.
 
-Run whenever you need or use the `watch` command to install dependencies automatically as you write `require`s on your project.
+# Why use ranza?
 
-A simple **status** example:
+Avoid accumulation of dependencies that are not being used.
 
-![Ranza Status](docs/images/status.png)
+## Getting Started
 
-## Install
+With [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed, install ranza with a single command.
 
-With [node](http://nodejs.org/) and [npm](https://www.npmjs.org/) installed, install ranza with a single command:
+##### As CLI
 
 ```sh
 $ npm install -g ranza
 ```
 
-## Usage
+##### As Node Module
+
+```sh
+$ npm install ranza
+```
+
+## CLI Usage
 
 #### Status
 
@@ -84,37 +90,25 @@ Remove and clean all unused dependencies from `package.json`:
 $ ranza clean
 ```
 
-#### Watch (only for HARDCORE developers)
+## Node Module Usage
 
-**The not recommended way:**
+You can check the dependencies status using:
 
-> Installs every single dependencies in each livereload
+```javascript
+var ranza = require('ranza');
 
-Livereload in all files, installing undefined dependencies without saving them in `package.json`:
+ranza.status(function(status) {
+	/* 
+	status = { 
+		undefinedUsed: [], 
+		definedUnused: [ 'ejs'], 
+		definedUsed: [ 'express', 'kenobi' ] 
+	}
+	*/
 
-```sh
-$ ranza watch
+	console.log(status)
+});
 ```
-
-**The recommended way:**
-
-> Installs only missed dependencies in each livereload
-
-Livereload in all files, installing undefined dependencies and saving them as `dependencies` in `package.json`:
-
-```sh
-$ ranza watch --save
-```
-
-Livereload in all files, installing undefined dependencies and saving them as `devDependencies` in `package.json`:
-
-```sh
-$ ranza watch --save-dev
-```
-
-Example:
-
-![Ranza Watch](docs/images/watch.gif)
 
 ## History
 

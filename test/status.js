@@ -1,7 +1,7 @@
 var assert = require('assert'),
-	Promises = require('bluebird'),
-	Ranza = Promises.promisifyAll(require('../index.js')),
-	realCwd = process.cwd();
+    Promises = require('bluebird'),
+    Ranza = Promises.promisifyAll(require('../index.js')),
+    realCwd = process.cwd();
 
 function fakeCwd(path) {
 	process.cwd = function() {
@@ -10,12 +10,12 @@ function fakeCwd(path) {
 }
 
 describe('Status', function() {
-	context('apply status command', function() {
-		context('on a project without missed requires and undefined dependencies', function() {
+	context('run project', function() {
+		context('without missed requires and undefined dependencies', function() {
 			it('should return only the used dependencies and a empty unused/undefined list', function(done) {
 				fakeCwd('perfectDependencies');
 
-				Ranza.status(function(status) {
+				Ranza.statusAsync(function(status) {
 					assert.deepEqual(typeof(status), 'object');
 					assert.deepEqual(status.undefinedUsed, []);
 					assert.deepEqual(status.definedUnused, []);
@@ -24,11 +24,11 @@ describe('Status', function() {
 				});
 			})
 		})
-		context('on a project with unused dependencies', function() {
+		context('with unused dependencies', function() {
 			it('should return the unused dependencies', function(done) {
-				fakeCwd('unusedDependecy');
+				fakeCwd('unusedDependency');
 
-				Ranza.status(function(status) {
+				Ranza.statusAsync(function(status) {
 					assert.deepEqual(typeof(status), 'object');
 					assert.deepEqual(status.undefinedUsed, []);
 					assert.deepEqual(status.definedUnused, ['kenobi', 'glob']);
@@ -37,5 +37,5 @@ describe('Status', function() {
 				});
 			})
 		})
-	});
+	})
 });

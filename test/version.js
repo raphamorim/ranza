@@ -1,5 +1,5 @@
 var assert = require('assert'),
-	Ranza = require('../index.js');
+    Ranza = require('../index.js');
 
 describe('Version', function() {
 	context('version method', function() {

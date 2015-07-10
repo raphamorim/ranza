@@ -1,10 +1,8 @@
-var suportColors = process.env ? require('supports-color') : null,
-    useColors = suportColors && true;
+var suportColors = (process.env ? require('supports-color') : null),
+    useColors = (suportColors && true);
 
 var colors = {
-  'success': 92,
-  'error': 91,
-  'message': 93
+  'success': 92, 'error': 91, 'message': 93
 };
 
 function Colorizer(color, message) {

@@ -4,7 +4,9 @@ var Promises = require('bluebird'),
 	path = require('path');
 
 function diff (arr, diff){
-    return arr.filter(function(i) {return diff.indexOf(i) < 0});
+    return arr.filter(function(i) {
+    	return diff.indexOf(i) < 0
+    });
 }
 
 function debug(log,  options, dependency) {

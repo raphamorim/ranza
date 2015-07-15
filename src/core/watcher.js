@@ -7,7 +7,7 @@ function Watcher(path) {
         var root = rooter(path),
             globOptions = {};
 
-        glob(root + '/**/*.js*', globOptions).then(function(files) {
+        glob(root + '/**/*.js', globOptions).then(function(files) {
             return resolve([files, root]);
         });
     });

@@ -10,24 +10,24 @@ var Ranza = new Function();
 
 Ranza.prototype.enableLogs = function(mode) {
     this.logs = (typeof(mode) === 'boolean' ? mode : false);
-}
+};
 
 Ranza.prototype.setDebug = function(debug, done, fn) {
     this.debug = (typeof(debug) === 'undefined' ? true : debug);
-}
+};
 
 Ranza.prototype.default = function() {
     return ('Hey young padawan, please type a valid command.\n' +
         '>> To see all commands, use: ranza [ -h, --help ]');
-}
+};
 
 Ranza.prototype.version = function() {
     return ('Ranza version: ' + pJson.version);
-}
+};
 
 Ranza.prototype.help = function() {
     return core.reader('/../docs/help.md');
-}
+};
 
 Ranza.prototype.status = function(fn) {
     var self = this;
@@ -45,7 +45,7 @@ Ranza.prototype.status = function(fn) {
             return ((typeof(fn) === 'function')? fn(status) : status);
         });
     }).catch(throwError);
-}
+};
 
 Ranza.prototype.install = function(install) {
     var save = install || false;
@@ -59,7 +59,7 @@ Ranza.prototype.install = function(install) {
             return core.manager('install', root, requires, save, true);
         }).catch(throwError);
     });
-}
+};
 
 Ranza.prototype.clean = function(removeType) {
     var save = removeType || false;
@@ -77,6 +77,6 @@ Ranza.prototype.clean = function(removeType) {
             });
         }).catch(throwError);
     });
-}
+};
 
 module.exports = new Ranza();

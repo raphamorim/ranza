@@ -8,7 +8,7 @@ describe('Help', function() {
 			var help = fs.readFileSync(__dirname + '/../docs/help.md', 'utf8');
 			var ranzaHelp = Ranza.help();
 
-			assert.deepEqual(ranzaHelp, help)
+			assert.deepEqual(ranzaHelp, help);
 			done();
 		})
 	});

@@ -25,7 +25,7 @@ function generateLog(command, print) {
 function Execute(path, requires, command, sh) {
     return new Promises(function(resolve, reject) {
         return Promises.map(requires, function(require) {
-            console.log(colorizer('message', command + ': ' + require))
+            console.log(colorizer('message', command + ': ' + require));
             return shell.execAsync(sh(require)).spread(function(stdout) {
                 console.log(stdout);
             }).catch(function(err) {

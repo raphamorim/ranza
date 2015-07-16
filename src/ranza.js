@@ -34,16 +34,22 @@ Ranza.prototype.status = function(fn) {
     return core.watcher('/').spread(function(files, root){
         var searcher = core.searcher(files),
             requires = core.formater(searcher['requires']);
-        return core.compare(root, requires, {debug: self.debug, where: searcher.where}).spread(function(diffs, unused, reqs, log) {
-            if (self.logs) console.log(log + '\n');
-            var status = {
-                undefinedUsed: diffs,
-                definedUnused: unused,
-                definedUsed: reqs
-            };
+        var debugOptions = {debug: self.debug, where: searcher.paths.require};
+        return core.compare(root, requires, debugOptions)
+            .spread(function(diffs, unused, reqs, log) {
+                if (self.logs) {
+                    if (searcher.parser.errors.length)
+                        console.log('Parser Errors: ', searcher.parser.errors);
+                    console.log(log + '\n');
+                }
+                var status = {
+                    undefinedUsed: diffs,
+                    definedUnused: unused,
+                    definedUsed: reqs
+                };
 
-            return ((typeof(fn) === 'function')? fn(status) : status);
-        });
+                return ((typeof(fn) === 'function')? fn(status) : status);
+            });
     }).catch(throwError);
 };
 

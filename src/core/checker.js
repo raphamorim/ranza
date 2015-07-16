@@ -1,7 +1,7 @@
-var Reflect = require('reflect');
+var BabelCore = require('babel-core');
 
 function Checker(data) {
-    var ast = Reflect.parse(data);
+    var ast = BabelCore.parse(data);
     return getRequires([], ast.body);
 }
 
@@ -18,11 +18,20 @@ function getRequires(requires, body) {
         if (body[i].type === 'ConditionalExpression') {
             getRequires(requires, [body[i].test, body[i].consequent])
         }
+        if (body[i].type === 'AssignmentExpression') {
+            getRequires(requires, [body[i].left, body[i].right])
+        }
         if (body[i].type === 'ExpressionStatement') {
+            if (body[i].expression.type === 'SequenceExpression')
+                getRequires(requires, body[i].expression.expressions)
+
             getRequires(requires, [body[i].expression.left, body[i].expression.right])
         }
         if (body[i].type === 'FunctionDeclaration') {
             getRequires(requires, (body[i].body.body || []))
+        }
+        if (body[i].type === 'ImportDeclaration') {
+            requires.push(body[i].source.value);
         }
         if (body[i].type === 'CallExpression') {
             if (body[i].callee.type === 'MemberExpression') {

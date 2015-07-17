@@ -7,6 +7,8 @@
 
 Quickly spot any dependency required in the project and not listed in `package.json`. And also the other way around: quickly remove listed dependencies that are not being used.
 
+**Supports ES5 / ES6**
+
 # Why use ranza?
 
 Avoid accumulation of dependencies that are not being used.
@@ -92,7 +94,9 @@ $ ranza clean
 
 ## Node Module Usage
 
-You can check the dependencies status using:
+### Status
+
+You can check the dependencies status from current project using:
 
 ```javascript
 var ranza = require('ranza');
@@ -109,6 +113,20 @@ ranza.status(function(status) {
 	console.log(status)
 });
 ```
+
+### Check
+
+Return dependencies (require and import) from current file using:
+
+```javascript
+var ranza = require('ranza');
+
+ranza.check('file.js', function(dependencies, err) {
+    console.log(dependencies) // ['kenobi', 'bluebird']
+    console.log(err) // null
+});
+```
+
 
 ## History
 

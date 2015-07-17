@@ -3,6 +3,7 @@ var pJson = require('../package.json'),
     installing = false;
 
 function throwError(err) {
+    throw Error(err);
     console.log(core.colorizer('error', 'Ranza: ' + err ));
 }
 
@@ -84,5 +85,12 @@ Ranza.prototype.clean = function(removeType) {
         }).catch(throwError);
     });
 };
+
+Ranza.prototype.check = function(fileSrc, fn) {
+    var fileData = require('fs').readFileSync(fileSrc, 'utf8');
+    return core.checker(fileData).spread(function(dependencies, err) {
+        return fn(dependencies, err);
+    });
+}
 
 module.exports = new Ranza();

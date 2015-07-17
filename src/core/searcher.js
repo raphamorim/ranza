@@ -1,7 +1,7 @@
 var fs   = require('fs'),
     path = require('path'),
-    checker = require('./checker'),
-    apiNode = require('../lib/nodeApis');   
+    parser = require('./parser'),
+    apiNode = require('../lib/nodeApis');
 
 function Searcher(paths) {
     var requires = [], parserErrors = [], allPaths = [], requiresPath = {};
@@ -11,7 +11,7 @@ function Searcher(paths) {
         if (path.indexOf('.min.js') !== -1) return;
         var data = fs.readFileSync(path, 'utf8');
         try {
-            var dependencies = checker(data);
+            var dependencies = parser(data);
         } catch(err) {
             parserErrors.push({path: path, err: err});
             return;

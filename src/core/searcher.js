@@ -1,35 +1,44 @@
 var fs   = require('fs'),
     path = require('path'),
+    parser = require('./parser'),
     apiNode = require('../lib/nodeApis');
 
 function Searcher(paths) {
-    var requires = [], validPaths = [], where = {};
+    var requires = [], parserErrors = [], allPaths = [], requiresPath = {};
     paths.forEach(function(path){
         if (path.indexOf('node_modules/') !== -1) return;
-        var data = fs.readFileSync(path, 'utf8'),        
-            dependecies = data.match(/require(\(.*?)\)/g);
+        if (path.indexOf('bower_components/') !== -1) return;
+        if (path.indexOf('.min.js') !== -1) return;
+        var data = fs.readFileSync(path, 'utf8');
+        try {
+            var dependencies = parser(data);
+        } catch(err) {
+            parserErrors.push({path: path, err: err});
+            return;
+        }
 
-        if (!dependecies) return;
-        dependecies.forEach(function(dependency){
-            dependency = dependency.replace(/\s+/g, '')
-                .replace(/require\(['"]/g, '')
-                .replace(/['"]\)/g, '');
-
-            if (dependency.indexOf('/') !== -1) return;
-            if (dependency.indexOf('.js') !== -1) return;
+        dependencies.forEach(function(dependency) {
+            if (dependency.indexOf('./') !== -1) return;
             if (apiNode.indexOf(dependency) !== -1) return;
+            if (dependency.indexOf('/') !== -1)
+                dependency = dependency.split('/')[0];
 
             requires.push(dependency);
-            validPaths.push(path);
-            where[dependency] = (where[dependency] || []);
-            where[dependency].push(path);
+            allPaths.push(path);
+            requiresPath[dependency] = (requiresPath[dependency] || []);
+            requiresPath[dependency].push(path);
         });
     });
 
     return {
         'requires': requires, 
-        'validPaths': validPaths, 
-        'where': where
+        'paths': {
+            'all': allPaths,
+            'require': requiresPath
+        },
+        'parser': {
+            'errors': parserErrors
+        }
     };
 }
 

@@ -5,30 +5,38 @@ var ranza = require('./ranza'),
 ranza.enableLogs(true);
 
 if (verify(['-v', '--version']))
-    return console.log(ranza.version());
+    console.log(ranza.version());
 
 else if (verify(['-h', '--help']))
-    return console.log(ranza.help());
+    console.log(ranza.help());
 
 else if (typeof commands[2] != 'undefined') {
 	if (commands.indexOf('status') > -1) {
         if (commands.indexOf('-d') > -1 || commands.indexOf('--debug') > -1)
             ranza.setDebug();
-    	return ranza.status();
+    	ranza.status();
     }
 
-	if (commands.indexOf('clean') > -1)
-    	return ranza.clean();
+	else if (commands.indexOf('clean') > -1) {
+    	ranza.clean();
+    }
 
-	if (commands.indexOf('install') > -1) {
+	else if (commands.indexOf('install') > -1) {
 		if (commands.indexOf('--save-dev') > -1)
-    		return ranza.install('--save-dev');
+    		ranza.install('--save-dev');
 
-    	if (commands.indexOf('--save') > -1)
-    		return ranza.install('--save');
+    	else if (commands.indexOf('--save') > -1)
+    		ranza.install('--save');
 
-    	return ranza.install();
+    	else 
+            ranza.install();
 	}
+
+    else {
+        console.log(ranza.default());
+    }
 }
 
-console.log(ranza.default());
+else {
+    console.log(ranza.default());
+}

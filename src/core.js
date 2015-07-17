@@ -1,5 +1,6 @@
 var Core = {
 	'asker': require('./core/asker'),
+    'checker': require('./core/checker'),
 	'colorizer': require('./core/colorizer'),
 	'compare': require('./core/comparer'),
 	'formater': require('./core/formater'),

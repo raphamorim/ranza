@@ -47,7 +47,8 @@ function Compare (root, requires, options) {
 
 		/* Dependency Comparator */
 		var gruntDependencies = dependencies.filter(function(item){
-			if (item.indexOf('grunt') >= 0) return true });
+			return (item.indexOf('grunt') >= 0)
+		});
 
 		if (gruntDependencies.length > 0) {
 			var gruntfilePath = root + 'Gruntfile.js',

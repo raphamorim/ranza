@@ -1,6 +1,6 @@
 {
   "name": "ranza",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "The dependency checker",
   "main": "./index.js",
   "bin": "./bin/ranza.js",
@@ -22,6 +22,7 @@
   "dependencies": {
     "babel-core": "^5.7.4",
     "bluebird": "^2.9.20",
+    "char-spinner": "^1.0.1",
     "glob": "^5.0.3",
     "supports-color": "^1.3.1"
   },

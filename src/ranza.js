@@ -1,5 +1,6 @@
 var pJson = require('../package.json'),
     core = require('./core'),
+    spinner = require('char-spinner'),
     installing = false;
 
 function throwError(err) {
@@ -32,6 +33,7 @@ Ranza.prototype.help = function() {
 
 Ranza.prototype.status = function(fn) {
     var self = this;
+    if (self.logs) self.spinner = spinner();
     return core.watcher('/').spread(function(files, root){
         var searcher = core.searcher(files),
             requires = core.formater(searcher['requires']);
@@ -42,6 +44,7 @@ Ranza.prototype.status = function(fn) {
                     if (searcher.parser.errors.length)
                         console.log('Parser Errors: ', searcher.parser.errors);
                     console.log(log + '\n');
+                    clearInterval(self.spinner);
                 }
                 var status = {
                     undefinedUsed: diffs,

@@ -51,23 +51,27 @@ function Compare (root, requires, options) {
 		});
 
 		if (gruntDependencies.length > 0) {
-			var gruntfilePath = root + 'Gruntfile.js',
-				gruntFile = '';
+			var gruntfilePath = root + '/Gruntfile.js',
+				gruntfile;
 
 			if (require('fs').existsSync(gruntfilePath)) {
-				gruntFile = adapter.gruntDependencies(gruntfilePath);
+				gruntfile = (adapter.gruntfileData(gruntfilePath) || '');
 			}
 
 			gruntDependencies.forEach(function(gruntDependency){
-				if (gruntFile.indexOf(gruntDependency) < 0){
+				if (gruntfile.indexOf(gruntDependency) < 0){
+					// requires.push(gruntDependency)
 					unusedLog.push(colorizer('error', '  • ') + gruntDependency);
 				} else {
-					usedDependencies.push(dependency);
+					usedDependencies.push(gruntDependency);
 					successLog.push(colorizer('success', '  • ') + gruntDependency);
 				}
-			})
+			});
 		}
 
+		var unusedGruntDependencies = diff(gruntDependencies, usedDependencies)
+
+		// Requires
 		dependencies = dependencies.filter(function(item){
 			if (item.indexOf('grunt') === -1) return true });
 
@@ -81,6 +85,7 @@ function Compare (root, requires, options) {
 			}
 		});
 
+		dependencies = dependencies.concat(unusedGruntDependencies);
 		var unusedDependencies = diff(dependencies, requires),
 			differences = diff(requires, dependencies);
 
@@ -88,7 +93,7 @@ function Compare (root, requires, options) {
 			differences.forEach(function(diff) {
 				undefinedLog.push(colorizer('error', '  • ') + diff);
 				debug(undefinedLog, options, diff);
-			})
+			});
 		}
 
 		if (successLog.length > 0) {

@@ -1,5 +1,5 @@
 var fs = require('fs');
 
-exports.gruntDependencies = function(path, dependencies) {
+exports.gruntfileData = function(path) {
 	return fs.readFileSync(path, 'utf8');
 }

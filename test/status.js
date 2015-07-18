@@ -37,5 +37,19 @@ describe('Status', function() {
 				});
 			})
 		})
+		context('with grunt used and unused dependencies', function() {
+			it('should return the unused dependencies', function(done) {
+				fakeCwd('gruntDependencies');
+
+				Ranza.statusAsync(function(status) {
+					assert.deepEqual(typeof(status), 'object');
+					assert.deepEqual(status.undefinedUsed, []);
+					assert.deepEqual(status.definedUnused, ['grunt-contrib-watch']);
+					assert.deepEqual(status.definedUsed, ['grunt', 'grunt-contrib-cssmin', 'grunt-contrib-uglify']);
+					done();
+				});
+			})
+		})
+
 	})
 });
